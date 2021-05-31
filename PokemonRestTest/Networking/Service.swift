@@ -9,10 +9,10 @@ import Foundation
 
 class Service {
     
-    static var urlString = "https://pokeapi.co/api/v2/pokemon?limit=10"
+    static var urlString = "https://pokeapi.co/api/v2/pokemon?limit=20"
     
-    static func getURLString(with string: String) {
-        urlString = string
+    static func getURLString(with string: String?) {
+        urlString = string ?? urlString
     }
     
     static func getPokemons(_ completion: @escaping (Result<PokemonItem, APIError>) -> Void) {

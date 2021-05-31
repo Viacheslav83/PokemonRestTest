@@ -17,26 +17,34 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CNj-A6-vWV">
-                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="790.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="11" translatesAutoresizingMaskIntoConstraints="NO" id="ZR2-yg-KPN">
+                                <rect key="frame" x="16" y="834.5" width="382" height="27.5"/>
+                                <color key="pageIndicatorTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </pageControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="CNj-A6-vWV" secondAttribute="bottom" id="4RF-CC-TCh"/>
+                            <constraint firstItem="ZR2-yg-KPN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="5QU-7j-4dK"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="CNj-A6-vWV" secondAttribute="trailing" id="Cty-oH-zbY"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ZR2-yg-KPN" secondAttribute="trailing" constant="16" id="Mia-lw-nN5"/>
                             <constraint firstItem="CNj-A6-vWV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="PpZ-ts-X1M"/>
                             <constraint firstItem="CNj-A6-vWV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="TQT-Bd-6gA"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ZR2-yg-KPN" secondAttribute="bottom" id="hQk-Wv-Y7Y"/>
+                            <constraint firstItem="ZR2-yg-KPN" firstAttribute="top" secondItem="CNj-A6-vWV" secondAttribute="bottom" id="pe8-oG-0PF"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="pageControl" destination="ZR2-yg-KPN" id="oYG-jg-bXu"/>
                         <outlet property="tableView" destination="CNj-A6-vWV" id="acm-qX-MLh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="20" y="76"/>
+            <point key="canvasLocation" x="18.840579710144929" y="75.669642857142847"/>
         </scene>
     </scenes>
     <resources>
