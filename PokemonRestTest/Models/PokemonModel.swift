@@ -10,4 +10,9 @@ import Foundation
 struct Pokemon: Codable {
     let name: String
     let urlString: String
+    
+    enum CodingKeys: String, CodingKey {
+        case name
+        case urlString = "url"
+    }
 }
