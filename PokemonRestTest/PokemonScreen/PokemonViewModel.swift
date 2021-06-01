@@ -15,8 +15,8 @@ class PokemonViewModel {
     var previousPageURLString: String?
     
     func getPokemon(with urlString: String? = nil) {
-        Service.getURLString(with: urlString)
-        Service.getPokemons { result in
+        PokemonService.getURLString(with: urlString)
+        PokemonService.fetchPokemon(completion: { result in
             switch result {
             case .success(let pokemons):
                 self.pokemons = pokemons.results
@@ -26,7 +26,7 @@ class PokemonViewModel {
             case .failure(let error):
                 self.updateCallback?(error)
             }
-        }
+        })
     }
     
     func subscribe(updateCallback: @escaping ((Error?) -> Void)) {

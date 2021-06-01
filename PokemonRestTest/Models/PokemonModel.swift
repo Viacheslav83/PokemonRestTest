@@ -16,3 +16,9 @@ struct Pokemon: Codable {
         case urlString = "url"
     }
 }
+
+struct PokemonItem: Codable {
+    let next: String?
+    let previous: String?
+    let results: [Pokemon]
+}

@@ -32,11 +32,11 @@ class PokemonViewController: UIViewController {
     
     @objc
     func pageControlDidTapped(_ sender: UIPageControl) {
-        if (currentPage - sender.currentPage) > 0 {
-            viewModel?.getPokemon(with: viewModel?.previousPageURLString)
-        } else {
-            viewModel?.getPokemon(with: viewModel?.nextPageURLString)
-        }
+        let urlString = ((currentPage - sender.currentPage) > 0)
+            ? viewModel?.previousPageURLString
+            : viewModel?.nextPageURLString
+        
+        viewModel?.getPokemon(with: urlString)
         currentPage = sender.currentPage
     }
     
@@ -74,7 +74,12 @@ class PokemonViewController: UIViewController {
 // MARK: - UITableViewDelegate
 extension PokemonViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
+        let showStoryboard = UIStoryboard.init(name: "Show", bundle: nil)
+        guard let showViewController = showStoryboard.instantiateViewController(identifier: "ShowViewController") as? ShowViewController else { return }
+        let showViewModel = ShowViewModel(number: indexPath.row,
+                                          name: viewModel?.pokemons[indexPath.row].name ?? "")
+        showViewController.viewModel = showViewModel
+        present(showViewController, animated: true)
     }
 }
 
