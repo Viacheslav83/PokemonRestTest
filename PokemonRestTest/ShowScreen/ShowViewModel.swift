@@ -10,16 +10,23 @@ import Foundation
 class ShowViewModel {
     
     var number: Int
+    var data: Data
     var name: String
+    
     var itemAbility = [PokemonAbilitie]()
+    let pokemonImgeUrl = "https://pokeapi.co/api/v2/pokemon-form/"
+    var urlImage: String?
     
     var shortEffect: String?
     var effect: String?
     var updateCalback: ((Error?) -> Void)?
     
-    init(number: Int, name: String) {
-        self.number = number
+    init(data: Data, name: String, number: Int) {
+        self.data = data
         self.name = name
+        self.number = number
+        
+        getPokemonAbilitie()
     }
     
     func getPokemonAbilitie() {
@@ -28,8 +35,8 @@ class ShowViewModel {
             switch result {
             case .success(let abilitie):
                 let effect = abilitie.effectEntries
-                self.shortEffect = effect[0].effect
-                self.effect = effect[0].effect
+                self.shortEffect = effect.last?.effect
+                self.effect = effect.last?.effect
                 self.updateCalback?(nil)
             case .failure(let error):
                 self.updateCalback?(error)

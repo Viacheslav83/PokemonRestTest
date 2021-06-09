@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - Pokemon
 struct Pokemon: Codable {
     let name: String
     let urlString: String
@@ -17,6 +18,7 @@ struct Pokemon: Codable {
     }
 }
 
+// MARK: - PokemonItem
 struct PokemonItem: Codable {
     let next: String?
     let previous: String?

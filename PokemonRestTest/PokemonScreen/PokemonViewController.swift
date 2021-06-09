@@ -76,8 +76,9 @@ extension PokemonViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let showStoryboard = UIStoryboard.init(name: "Show", bundle: nil)
         guard let showViewController = showStoryboard.instantiateViewController(identifier: "ShowViewController") as? ShowViewController else { return }
-        let showViewModel = ShowViewModel(number: indexPath.row,
-                                          name: viewModel?.pokemons[indexPath.row].name ?? "")
+        let showViewModel = ShowViewModel(data: viewModel?.cach[indexPath.row] ?? Data(),
+                                          name: viewModel?.pokemons[indexPath.row].name ?? "",
+                                          number: viewModel?.getNumberPokemon(at: indexPath.row) ?? 0)
         showViewController.viewModel = showViewModel
         present(showViewController, animated: true)
     }
@@ -92,6 +93,13 @@ extension PokemonViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         cell.textLabel?.text = viewModel?.pokemons[indexPath.row].name
+        cell.imageView?.image = UIImage(named: "defaultPokemon")
+        
+        DispatchQueue.main.async {
+            self.viewModel?.fetchImagePokemon(at: indexPath.row, comletion: { data in
+                cell.imageView?.image = UIImage(data: data)
+            })
+        }
         return cell
     }
 }

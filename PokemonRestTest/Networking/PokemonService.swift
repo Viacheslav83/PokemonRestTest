@@ -8,7 +8,7 @@
 import Foundation
 
 class PokemonService {
-    typealias ServiceResult = Result<PokemonItem, APIError>
+    typealias ServiceResult<T> = Result<T, APIError>
     
     static var urlString = "https://pokeapi.co/api/v2/pokemon?limit=20"
     
@@ -16,17 +16,25 @@ class PokemonService {
         urlString = string ?? urlString
     }
     
-    static func fetchPokemon(completion: @escaping (ServiceResult) -> Void) {
+    static func fetchPokemon(completion: @escaping (ServiceResult<PokemonItem>) -> Void) {
         guard let url = URL(string: urlString) else { return }
         let request = URLRequest(url: url)
-        Service.getPokemons(with: request, completion: completion)
+        Service.getService(with: request, completion: completion)
     }
     
     static func fetchPokemonActivity(with urlString: String,
-                                     completion: @ escaping (Result<PokemonAbilitie, APIError>) -> Void) {
+                                     completion: @ escaping (ServiceResult<PokemonAbilitie>) -> Void) {
+        
         guard let url = URL(string: urlString) else { return }
         let request = URLRequest(url: url)
+        Service.getService(with: request, completion: completion)
+    }
+    
+    static func fetchImagePokemon(with urlString: String,
+                                  completion: @escaping (ServiceResult<PokemonForm>) -> Void) {
         
-        Service.getAbilitiesPokemon(with: request, completion: completion)
+        guard let url = URL(string: urlString) else { return }
+        let request = URLRequest(url: url)
+        Service.getService(with: request, completion: completion)
     }
 }

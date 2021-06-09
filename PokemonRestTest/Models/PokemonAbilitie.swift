@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - PokemonAbilitie
 struct PokemonAbilitie: Codable {
     let effectEntries: [Item]
     
@@ -15,6 +16,7 @@ struct PokemonAbilitie: Codable {
     }
 }
 
+// MARK: - Item
 struct Item: Codable {
     let effect: String
     let shortEffect: String

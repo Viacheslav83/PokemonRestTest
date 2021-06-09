@@ -21,8 +21,6 @@ class ShowViewController: UIViewController {
 
         nameLabel.text = viewModel?.name
         pokemonImageView.image = UIImage(named: "defaultPokemon")
-//        effectLabel.text = viewModel?.effect
-//        shortEffectLabel.text = viewModel?.shortEffect
         
         viewModel?.subscribe(updateCalback: { error in
             if let error = error {
@@ -33,7 +31,9 @@ class ShowViewController: UIViewController {
             self.shortEffectLabel.text = self.viewModel?.shortEffect
         })
         
-        viewModel?.getPokemonAbilitie()
+        DispatchQueue.main.async {
+            self.pokemonImageView.image = UIImage(data: self.viewModel?.data ?? Data())
+        }
     }
 
 }
